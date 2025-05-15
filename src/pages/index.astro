@@ -1,0 +1,70 @@
+---
+import AboutMe from "@components/AboutMe.astro";
+import Experience from "@components/Experience.astro";
+import Hero from "@components/Hero.astro";
+import Projects from "@components/Projects.astro";
+import SectionContainer from "@components/SectionContent.astro";
+import Layout from "@layouts/Layout.astro";
+---
+<Layout>
+    <main class="main">
+        <SectionContainer class="w-full sm:py-32" id="home">
+            <Hero/>
+        </SectionContainer>
+        <div class="space-y-2">
+            <SectionContainer id="experience" class="md:w-full scroll-section sm:pt-44">
+                <Experience/>
+            </SectionContainer>
+            <SectionContainer id="projects" class="scroll-section md:w-full">
+                <Projects/>
+            </SectionContainer>
+            <SectionContainer id="aboutMe" class="scroll-section">
+                <AboutMe/>
+            </SectionContainer>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    body {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scroll-section {
+        box-sizing: border-box;
+        width: 100svw;
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+        padding: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+
+<script>
+    import { animate, inView } from "motion"
+
+    inView(".scroll-section", (element) => {
+        animate(
+            element,
+            { opacity: 1, x: [-100, 0] },
+            {
+                duration: 0.9,
+                easing: [0.17, 0.55, 0.55, 1],
+            }
+        )
+
+        return () => animate(element, { opacity: 0, x: -100 })
+    })
+</script>
+
+
+

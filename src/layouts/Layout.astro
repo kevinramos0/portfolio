@@ -1,0 +1,56 @@
+---
+import "./src/styles/global.css";
+import SideBar from "@components/SideBar.astro";
+---
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator}/>
+    <title>Kevin Ramos | Portfolio</title>
+</head>
+<body class="relative text-darkText">
+<div class="absolute z-[-2] h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+<SideBar/>
+<slot/>
+<style is:global>
+    :root {
+    }
+
+    html {
+        font-family: system-ui, sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        color: rgba(17, 17, 17, 0.9);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overscroll-behavior: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    @keyframes blur {
+        to {
+            backdrop-filter: blur(20px);
+            border-width: 1px;
+            border-color: rgba(0, 0, 0);
+            padding: 0.25rem 0.75rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: rgb(229, 229, 229);
+            border-radius: 9999px;
+        }
+    }
+</style>
+</body>
+</html>
+

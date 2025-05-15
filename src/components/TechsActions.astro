@@ -1,0 +1,31 @@
+---
+interface Props {
+	techs: {
+		title: string;
+		alt: string;
+		icon?: string;
+	}[];
+	className?: string;
+}
+
+const { techs, className } = Astro.props;
+---
+<div class={`min-w-0 flex-1 ${className}`}>
+    <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
+        <div class="mt-2 flex items-center text-sm text-gray-500 gap-5 has-tooltip">
+            {
+                techs.map((tech) => {
+                    return (
+                            <div class="relative flex items-center group justify-center">
+                                <img src={tech.icon} class="md:grayscale-100 hover:grayscale-0 w-auto h-6"  alt={tech.alt}/>
+                                <div class="absolute bottom-full mb-2 hidden group-hover:block px-2 py-1 bg-gray-800 text-white text-xs rounded">
+                                    {tech.title}
+                                </div>
+                            </div>
+                    )
+                })
+            }
+        </div>
+
+    </div>
+</div>

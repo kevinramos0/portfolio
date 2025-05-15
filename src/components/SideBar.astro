@@ -1,0 +1,94 @@
+---
+import Contact from "./Contact.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const navItems = [
+	{
+		title: "Inicio",
+		label: "home",
+		url: "/#home",
+	},
+	{
+		title: "Experiencia",
+		label: "experience",
+		url: "/#experience",
+	},
+	{
+		title: "Proyectos",
+		label: "projects",
+		url: "/#projects",
+	},
+	{
+		title: "Sobre mí",
+		label: "aboutMe",
+		url: "/#aboutMe",
+	},
+];
+---
+
+<header
+        class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
+    <nav
+            class="flex px-3 text-sm font-medium rounded-full text-background/80 justify-around items-center bg-primary md:w-2xl md:gap-10"
+    >
+        {
+            navItems.map((link) => (
+                    <a
+                            class="relative block px-2 py-2 transition hover:scale-110 ease-in-out hover:font-bold"
+                            aria-label={link.label}
+                            href={link.url}
+                    >
+                        {link.title}
+                    </a>
+            ))
+        }
+        <Contact />
+        <!--<ThemeToggle />-->
+    </nav>
+
+
+
+
+</header>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll("section")
+        const navItems = document.querySelectorAll("header nav a")
+
+        const callback = (entries: any[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    navItems.forEach((item) => {
+                        if (item.getAttribute("aria-label") == entry.target.id) {
+                            item.classList.add("text-white", "font-bold")
+                        } else {
+                            item.classList.remove("text-white","font-bold")
+                        }
+                    })
+                }
+            })
+        }
+
+        const observer = new IntersectionObserver(callback, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.3,
+        })
+
+        sections.forEach((section) => {
+            observer.observe(section)
+        })
+
+        // Cleanup function
+        document.onvisibilitychange = () => {
+            if (document.visibilityState === "hidden") {
+                observer.disconnect()
+            } else {
+                sections.forEach((section) => {
+                    observer.observe(section)
+                })
+            }
+        }
+    })
+</script>

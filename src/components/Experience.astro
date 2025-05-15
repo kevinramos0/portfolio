@@ -1,0 +1,79 @@
+---
+const experiencia = [
+	{
+		title: "Experiencia",
+		items: [
+			{
+				title: "Desarrollador de Software",
+				institution: "MINSAL",
+				year: 2023,
+				description:
+					"Actualmente desempeño el cargo de desarrollador de software. construyendo aplicaciones con tecnologías como Vue, TypeScript, NestJS, PostgreSQL y Docker. donde lidero el desarrollo de algunos de dichos proyectos.",
+				icon: "🖥️",
+			},
+			{
+				title: "Programador Web Jr.",
+				institution: "CASS",
+				year: 2022,
+				description:
+					"Trabajé durante 6 meses como pasante en el área de desarrollo web, utilizando tecnologías como C#, ASP.NET, SQL Server y JavaScript. en aplicaciones MVC.",
+				icon: "🖥️",
+			},
+		],
+	},
+	{
+		title: "Educación",
+		items: [
+			{
+				title: "Master en Análisis y Visualización de Datos Masivos",
+				institution: "UNIR México",
+				year: 2024,
+				description:
+					"Maestrante en análisis y visualización de datos masivos en la Universidad Internacional de La Rioja, México.",
+				icon: "🎓",
+			},
+			{
+				title: "Ingeniero en Sistema y Redes Informáticas",
+				institution: "UGB",
+				year: 2022,
+				description:
+					"Graduado de ingeniería en sistemas y redes informáticas en la Universidad Capitan General Gerardo Barrios.",
+				icon: "🎓",
+			},
+		],
+	},
+];
+---
+<h2 class="text-4xl font-semibold tracking-tight text-pretty text-darkText sm:text-4xl opacity-80 text-center">Resumen</h2>
+<!-- Contenedor principal -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-darkText text-sm px-4 py-20">
+    {
+        experiencia.map((exp) => {
+            return (
+                    <div class="relative">
+                        <h2 class="text-xl mb-12 text-darkText">{exp.title}</h2>
+                        <!-- Línea vertical -->
+                        <div class="absolute left-4 top-10 bottom-4 w-0.5 bg-primary"></div>
+
+                        {
+                            exp.items.map((item) => {
+                                return (
+                                        <div class="relative pl-12 mb-16">
+                                            <div class="absolute left-1 top-2/6 w-6 h-6 bg-background rounded-full flex items-center justify-center text-xs font-bold shadow-md">
+                                                {item.icon}
+                                            </div>
+                                            <div class="rounded-md p-4 border-l-4 border-primary shadow-md hover:scale-105 transition-all duration-300 ease-in-out bg-background/70">
+                                                <h3 class="text-base font-semibold text-darkText">{item.title}</h3>
+                                                <p class="text-secondary font-medium text-xs mb-1">{item.year}
+                                                    | {item.institution}</p>
+                                                <p class="text-darkText/70 text-xs leading-relaxed">{item.description}</p>
+                                            </div>
+                                        </div>
+                                )
+                            })
+                        }
+                    </div>
+            )
+        })
+    }
+</div>

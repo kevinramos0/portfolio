@@ -1,0 +1,54 @@
+---
+interface IMenuItem {
+	id: string;
+	title: string;
+	label: string;
+	url: string;
+}
+
+const menuItems: IMenuItem[] = [
+	{
+		id: "experience",
+		title: "Experience",
+		label: "experience",
+		url: "/#experience",
+	},
+	{ id: "projects", title: "Projects", label: "projects", url: "/#projects" },
+	{ id: "aboutMe", title: "About Me", label: "aboutMe", url: "/#aboutMe" },
+];
+---
+
+{
+    menuItems.map((item: IMenuItem) => (
+    <a class="relative block px-2 py-2 transition hover:text-white hover:scale-110 ease-in-out"
+       aria-label={item.label}
+       href={item.url}
+       id={`menu-${item.id}`}
+    >
+        {item.title}
+    </a>
+        ))
+    }
+
+<script>
+    window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section[id]");
+        let current = "";
+        sections.forEach((section) => {
+            if (section instanceof HTMLElement && window.scrollY >= section.offsetTop - 100) {
+                current = section.id;
+            }
+        });
+
+        document.querySelectorAll("a[id^='menu-']").forEach((link) => {
+            link.classList.remove("text-white");
+        });
+
+        if (current) {
+            const activeLink = document.getElementById(`menu-${current}`);
+            if (activeLink) {
+                activeLink.classList.add("text-white");
+            }
+        }
+    });
+</script>

@@ -1,0 +1,59 @@
+---
+import Cubo from "@components/Cubo.astro";
+import TechsActions from "@components/TechsActions.astro";
+import { getTechsById } from "../data/techs";
+const techs = getTechsById([
+	"astro",
+	"vue",
+	"ts",
+	"nest",
+	"postgresql",
+	"mongodb",
+	"docker",
+	"tailwind",
+	"net",
+]);
+---
+
+
+<div class="flex flex-col md:flex-row justify-center md:justify-end items-center px-5 gap-8 md:h-80">
+    <div class="md:w-auto container">
+        <h1 class="text-4xl font-semibold tracking-tight text-pretty sm:text-4xl opacity-80 animate-me text-primary">
+            Hola, soy Kevin Ramos!</h1>
+        <p class="mt-6 text-2xl/8 text-gray-600">Especializado en la creación de soluciones web modernas, seguras y
+            escalables. Con 3 años de experiencia trabajando para construir aplicaciones eficientes.</p>
+        <TechsActions techs={techs} className="md:sr-only"/>
+        <div class="flex flex-col sm:flex-row items-center gap-5 mt-8 text-center">
+            <a href="mailto:kevin.ramos1429@gmail.com"
+               class="buttonClass py-2 px-4 bg-primary rounded-full text-background hover:text-white font-bold min-w-[8rem] hover:cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out">
+                Contacto
+            </a>
+            <a href="https://drive.google.com/file/d/1eH368nIKCHr4cizJoQXy65at_YoheiRK/view?usp=sharing" target="_blank">
+            <button type="button"
+                    class="buttonClass py-2 px-4 bg-background text-darkText font-medium rounded-full min-w-[8rem] hover:cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out">
+                Descargar CV
+            </button>
+            </a>
+        </div>
+    </div>
+    <Cubo/>
+</div>
+
+<script>
+    import {gsap} from "gsap";
+    import SplitText from "gsap/SplitText";
+
+    gsap.registerPlugin(SplitText);
+
+    document.fonts.ready.then(() => {
+        gsap.set(".container", {opacity: 1});
+        let split = SplitText.create(".animate-me", {type: "words", aria: "hidden"});
+
+        gsap.from(split.words, {
+            opacity: 0,
+            duration: 3,
+            ease: "sine.out",
+            stagger: 0.1,
+        });
+    });
+</script>
