@@ -10,7 +10,8 @@
 			"@pages/*": ["src/pages/*"],
 			"@assets/*": ["src/assets/*"],
 			"@icons/*": ["src/icons/*"],
-			"@data/*": ["src/data/*"]
+			"@data/*": ["src/data/*"],
+			"@styles/*": ["src/styles/*"]
 		},
 		"plugins": [
 			{
